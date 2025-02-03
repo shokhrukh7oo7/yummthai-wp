@@ -138,6 +138,16 @@ add_action( 'widgets_init', 'yummthai_widgets_init' );
  * Enqueue scripts and styles.
  */
 
+ // ====================================================================================
+// Разрешить загрузку SVG
+function allow_svg_upload($mimes)
+{
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'allow_svg_upload');
+// ====================================================================================
+
 // ====================================================================================
 //  ОТКЛЮЧАЕМ jquery для подключение свой jquery
 function disable_default_jquery()
@@ -194,3 +204,28 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+// ====================================================================================
+// Header start
+if (function_exists('acf_add_options_page')) {
+	acf_add_options_page(array(
+		'page_title' => 'Настройка шапки',
+		'menu_title' => 'Настройка шапки',
+		'menu_slug' => 'header-settings',
+		'capability' => 'edit_posts',
+		'redirect' => false
+	));
+}
+// Header end
+
+// Modal start
+if (function_exists('acf_add_options_page')) {
+	acf_add_options_page(array(
+		'page_title' => 'Настройка модального окна',
+		'menu_title' => 'Настройка модального окна',
+		'menu_slug' => 'modal-settings',
+		'capability' => 'edit_posts',
+		'redirect' => false
+	));
+}
+// Modal end
+// ====================================================================================
