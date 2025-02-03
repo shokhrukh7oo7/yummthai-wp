@@ -137,11 +137,29 @@ add_action( 'widgets_init', 'yummthai_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
+
+// ====================================================================================
+//  ОТКЛЮЧАЕМ jquery для подключение свой jquery
+function disable_default_jquery()
+{
+	wp_deregister_script('jquery');
+}
+add_action('wp_enqueue_scripts', 'disable_default_jquery');
+// ====================================================================================
 function yummthai_scripts() {
 	wp_enqueue_style( 'yummthai-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'yummthai-style', 'rtl', 'replace' );
-
 	wp_enqueue_script( 'yummthai-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+
+	
+	wp_enqueue_style( 'styles', get_template_directory_uri().'/assets/css/style.css', array(), _S_VERSION );
+	wp_enqueue_style( 'swiper-bundle.min', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.2.1' );
+
+	wp_enqueue_script( 'jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', array(), '3.6.0', true );
+	wp_enqueue_script( 'upper', 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js', array(), '2.11.6', true );
+	wp_enqueue_script( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', array(), '4.5.2', true );
+	wp_enqueue_script( 'swiper-bundle-min', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.2.1', true );
+	wp_enqueue_script( 'main', get_template_directory_uri().'/assets/js/main.js', array(), _S_VERSION, true);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
