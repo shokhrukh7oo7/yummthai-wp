@@ -259,45 +259,45 @@
 		<div class="modal-content">
 			<div class="modal-body">
 				<div class="modal-head">
-					<h5>Enter or register</h5>
+					<h5><?php echo the_field('modal_sign_in_header', 'options')?></h5>
 					<button type="button" class="btn" data-dismiss="modal" aria-label="Close">
 						<img src="<?php echo get_template_directory_uri() . '/assets/img/close.svg'?>" alt="">
 					</button>
 				</div>
 				<div class="modal-inner modal-inner-login">
-					<h4>Welcome to YummThai</h4>
-					<p>Quick login</p>
+					<h4><?php echo the_field('modal_sign_in_header_2', 'options')?></h4>
+					<p><?php echo the_field('modal_sign_in_description', 'options')?></p>
 					<a href="https://web.yummthai.com/api/member/social/apple?ref_url=https://mythai2.uzwebline.com/"
 						class="btn ico ico-left btn-transparent">
 						<i>
-							<img src="<?php echo get_template_directory_uri() . '/assets/img/apple.svg'?>" alt="">
+							<img src="<?php echo the_field('modal_sign_in_social', 'options')?>" alt="">
 						</i>
-						Via Apple
+						<?php echo the_field('modal_sign_in_social_text', 'options')?>
 					</a>
 					<a href="https://web.yummthai.com/api/member/social/google"
 						class="btn ico ico-left btn-transparent">
 						<i>
-							<img src="<?php echo get_template_directory_uri() . '/assets/img/google.svg'?>" alt="">
+							<img src="<?php echo the_field('modal_sign_in_social_2', 'options')?>" alt="">
 						</i>
-						Via Google
+						<?php echo the_field('modal_sign_in_social_text_2', 'options')?>
 					</a>
 					<a href="https://mythai.uzwebline.com/api/member/social/facebook?ref_url=https://mythai2.uzwebline.com/"
 						class="btn ico ico-left btn-transparent">
 						<i>
-							<img src="<?php echo get_template_directory_uri() . '/assets/img/facebook.svg'?>" alt="">
+							<img src="<?php echo the_field('modal_sign_in_social_3', 'options')?>" alt="">
 						</i>
-						Via Facebook
+						<?php echo the_field('modal_sign_in_social_text_3', 'options')?>
 					</a>
 
 					<div class="divider">
-						<span>or</span>
+						<span><?php echo the_field('extra_information', 'options')?></span>
 					</div>
 					<div class="form-group">
-						<label>Using email </label>
+						<label> <?php echo the_field('form_text', 'options')?></label>
 						<input type="email" />
 					</div>
 
-					<button class="btn btn-transparent">Continue with email</button>
+					<button class="btn btn-transparent"><?php echo the_field('form_btn', 'options')?></button>
 				</div>
 			</div>
 		</div>
