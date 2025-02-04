@@ -13447,7 +13447,7 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
 }
 .main .category {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   margin-bottom: 40px;
   overflow-x: scroll;
   scroll-behavior: smooth;
