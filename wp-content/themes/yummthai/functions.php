@@ -228,4 +228,16 @@ if (function_exists('acf_add_options_page')) {
 	));
 }
 // Modal end
+
+// Footer start
+if (function_exists('acf_add_options_page')) {
+	acf_add_options_page(array(
+		'page_title' => 'Настройка подвала',
+		'menu_title' => 'Настройка подвала',
+		'menu_slug' => 'footer-setitng',
+		'capability' => 'edit_posts',
+		'redirect' => false
+	));
+}
+// Footer end
 // ====================================================================================
