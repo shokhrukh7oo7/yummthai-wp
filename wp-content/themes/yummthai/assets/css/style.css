@@ -13447,11 +13447,12 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
 }
 .main .category {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   margin-bottom: 40px;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: 10px;
+  white-space: nowrap;
 }
 .main .category span {
   color: #9ca3af;
