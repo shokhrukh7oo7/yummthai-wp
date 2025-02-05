@@ -18,451 +18,108 @@ get_header();
 </div>
 
 <main class="container-fluid main">
-    <div class="category">
-        <span class="active">All</span>
-        <span>Phuket</span>
-        <span>Bangkok</span>
-        <span>Phuket</span>
-        <span>Samui</span>
-    </div>
+<?php
+    $selected_category = isset($_GET['category']) ? sanitize_text_field($_GET['category']) : '';
 
-    <div class="news">
-        <div class="top-news">
-            <div class="row">
-                <div class="col-md-6">
-                    <a class="item-top" href="#">
-                        <div class="img">
-                            <img src="<?php echo get_template_directory_uri() . '/assets/img/item-top.jpg' ?>"
-                                alt="image" />
-                        </div>
-                        <div class="desc">
-                            <h6>
-                                Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                                Стоит Посетить
-                            </h6>
-                            <div class="info">
-                                <span>
-                                    <i>
-                                        <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                            alt="image">
-                                    </i>
-                                    Пхукет
-                                </span>
-                                <span> 2 июля </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a class="item-top" href="#">
-                        <div class="img">
-                            <img src="<?php echo get_template_directory_uri() . '/assets/img/item-top.jpg' ?>" alt="" />
-                        </div>
-                        <div class="desc">
-                            <h6>
-                                Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                                Стоит Посетить
-                            </h6>
-                            <div class="info">
-                                <span>
-                                    <i>
-                                        <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                            alt="image">
-                                    </i>
-                                    Пхукет
-                                </span>
-                                <span> 2 июля </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+    $args = [
+        'post_type'      => 'post',
+        'posts_per_page' => 14,
+        'paged'          => get_query_var('paged') ? get_query_var('paged') : 1,
+    ];
+
+    if (!empty($selected_category) && $selected_category !== 'all') {
+        $args['category_name'] = $selected_category;
+    }
+
+    $query = new WP_Query($args);
+    $posts = $query->posts;
+    $categories = get_categories();
+?>
+
+<div class="category">
+    <span class="active" data-filter="all">All</span>
+    <?php foreach ($categories as $category): ?>
+        <span data-filter="<?php echo esc_attr($category->slug); ?>">
+            <?php echo esc_html($category->name); ?>
+        </span>
+    <?php endforeach; ?>
+</div>
+
+<div class="news">
+    <div class="top-news">
         <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
+            <?php
+            for ($i = 0; $i < min(2, count($posts)); $i++):
+                $post = $posts[$i];
+                $categories = get_the_category($post->ID);
+                ?>
+                <div class="col-md-6">
+                    <a class="item-top" href="<?php echo get_permalink($post->ID); ?>"
+                        data-category="<?php echo esc_attr($categories[0]->slug); ?>">
+                        <div class="img">
+                            <?php echo get_the_post_thumbnail($post->ID, 'medium'); ?>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
+                        <div class="desc">
+                            <h6><?php echo get_the_title($post->ID); ?></h6>
+                            <div class="info">
+                                <span>
+                                    <i>
+                                        <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>" alt="image">
+                                    </i>
+                                    <?php echo esc_html($categories[0]->name); ?>
+                                </span>
+                                <span><?php echo get_the_date('j F', $post->ID); ?></span>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-12">
-                <h3>Популярные статьи</h3>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#" class="item">
-                    <div class="img">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                    </div>
-                    <div class="desc">
-                        <h6>
-                            Путеводитель по Таиланду: Лучшие Места и Экскурсии, Которые
-                            Стоит Посетить
-                        </h6>
-                        <p>
-                            Откройте для себя Таиланд: от оживленных городов до уединенных
-                            пляжей. Исследуйте культурные достопримечательности, природные
-                            чудеса и приключения, которые ждут вас в этой удивительной
-                            стране.
-                        </p>
-                        <div class="info">
-                            <span>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                        alt="image">
-                                </i>
-                                Пхукет
-                            </span>
-                            <span> 2 июля </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            <?php endfor; ?>
         </div>
     </div>
 
-    <nav aria-label="navigation">
-        <ul class="pagination">
-            <li class="page-item arrow">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 12H5" stroke="black" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M12 19L5 12L12 5" stroke="black" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
+    <div class="row">
+        <?php
+        for ($i = 2; $i < count($posts); $i++):
+            $post = $posts[$i];
+            $categories = get_the_category($post->ID);
+            ?>
+            <div class="col-md-4 col-sm-6">
+                <a href="<?php echo get_permalink($post->ID); ?>" class="item"
+                    data-category="<?php echo esc_attr($categories[0]->slug); ?>">
+                    <div class="img">
+                        <?php echo get_the_post_thumbnail($post->ID, 'medium'); ?>
+                    </div>
+                    <div class="desc">
+                        <h6><?php echo get_the_title($post->ID); ?></h6>
+                        <p><?php echo get_the_excerpt($post->ID); ?></p>
+                        <div class="info">
+                            <span>
+                                <i>
+                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>" alt="image">
+                                </i>
+                                <?php echo esc_html($categories[0]->name); ?>
+                            </span>
+                            <span><?php echo get_the_date('j F', $post->ID); ?></span>
+                        </div>
+                    </div>
                 </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item arrow">
-                <a class="page-link" href="#" aria-label="Next">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19" stroke="black" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M12 5L19 12L12 19" stroke="black" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </a>
-            </li>
-        </ul>
-    </nav>
+            </div>
+        <?php endfor; ?>
+    </div>
+
+    <div class="pagination">
+        <?php
+        echo paginate_links([
+            'total'     => $query->max_num_pages,
+            'current'   => max(1, get_query_var('paged')),
+            'prev_text' => '&laquo;',
+            'next_text' => '&raquo;',
+        ]);
+        ?>
+    </div>
+</div>
+
+<?php wp_reset_postdata(); ?>
 
     <div class="cards-wrap">
         <h3>Туры и экскурсии по теме</h3>
@@ -487,10 +144,12 @@ get_header();
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>" alt="image">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>"
+                            alt="image">
                     </div>
                     <div class="swiper-button-prev">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>" alt="image">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>"
+                            alt="image">
                     </div>
                 </div>
                 <a href="#" class="desc">
@@ -542,10 +201,12 @@ get_header();
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>" alt="image">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>"
+                            alt="image">
                     </div>
                     <div class="swiper-button-prev">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>" alt="image">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>"
+                            alt="image">
                     </div>
                 </div>
                 <a href="#" class="desc">
@@ -597,10 +258,12 @@ get_header();
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>" alt="image">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>"
+                            alt="image">
                     </div>
                     <div class="swiper-button-prev">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>" alt="image">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>"
+                            alt="image">
                     </div>
                 </div>
                 <a href="#" class="desc">
@@ -652,10 +315,12 @@ get_header();
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>" alt="image">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>"
+                            alt="image">
                     </div>
                     <div class="swiper-button-prev">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>" alt="image">
+                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>"
+                            alt="image">
                     </div>
                 </div>
                 <a href="#" class="desc">
