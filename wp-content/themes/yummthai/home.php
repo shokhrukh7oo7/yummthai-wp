@@ -40,7 +40,13 @@ get_header();
         <a href="?category=all">
             <span class="<?= $selected_category === 'all' || $selected_category === '' ? 'active' : '' ?>"
                 data-filter="all">
-                <?= esc_html__('All', 'textdomain'); ?>
+                <?php
+                if (pll_current_language() === 'ru') {
+                    echo esc_html__('Все', 'textdomain');
+                } else {
+                    echo esc_html__('All', 'textdomain');
+                }
+                ?>
             </span>
             <a />
             <?php foreach ($categories as $category): ?>
@@ -134,240 +140,12 @@ get_header();
 
     <?php wp_reset_postdata(); ?>
 
+    <!-- Тут должен быть слайдер над футером 
     <div class="cards-wrap">
-        <h3>Туры и экскурсии по теме</h3>
-        <div class="cards">
-            <div class="item">
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>"
-                                    alt="image" />
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#"> <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>"
-                                    alt="image" /> </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#"><img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>"
-                                    alt="image" /> </a>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>"
-                            alt="image">
-                    </div>
-                    <div class="swiper-button-prev">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>"
-                            alt="image">
-                    </div>
-                </div>
-                <a href="#" class="desc">
-                    <span class="location">
-                        <i>
-                            <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                alt="image">
-                        </i>
-                        Пхукет
-                    </span>
-                    <h6>Као-Лак: бухта Пханг-Нга и остров Джеймса Бонда на лодке</h6>
-                    <div class="bottom">
-                        <div class="desc-item">
-                            Adult:
-                            <span>2600 ฿</span>
-                        </div>
-                        <div class="desc-item">
-                            Children 3-11:
-                            <span>2200 ฿</span>
-                        </div>
-                        <div class="desc-item">
-                            <p>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/star.svg' ?>"
-                                        alt="image">
-                                </i>
-                                4.86
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#"> <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>"
-                                    alt="" /> </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#"><img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>"
-                                    alt="" /> </a>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>"
-                            alt="image">
-                    </div>
-                    <div class="swiper-button-prev">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>"
-                            alt="image">
-                    </div>
-                </div>
-                <a href="#" class="desc">
-                    <span class="location">
-                        <i>
-                            <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                alt="image">
-                        </i>
-                        Пхукет
-                    </span>
-                    <h6>Као-Лак: бухта Пханг-Нга и остров Джеймса Бонда на лодке</h6>
-                    <div class="bottom">
-                        <div class="desc-item">
-                            Adult:
-                            <span>2600 ฿</span>
-                        </div>
-                        <div class="desc-item">
-                            Children 3-11:
-                            <span>2200 ฿</span>
-                        </div>
-                        <div class="desc-item">
-                            <p>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/star.svg' ?>"
-                                        alt="image">
-                                </i>
-                                4.86
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#"> <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>"
-                                    alt="" /> </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#"><img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>"
-                                    alt="" /> </a>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>"
-                            alt="image">
-                    </div>
-                    <div class="swiper-button-prev">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>"
-                            alt="image">
-                    </div>
-                </div>
-                <a href="#" class="desc">
-                    <span class="location">
-                        <i>
-                            <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                alt="image">
-                        </i>
-                        Пхукет
-                    </span>
-                    <h6>Као-Лак: бухта Пханг-Нга и остров Джеймса Бонда на лодке</h6>
-                    <div class="bottom">
-                        <div class="desc-item">
-                            Adult:
-                            <span>2600 ฿</span>
-                        </div>
-                        <div class="desc-item">
-                            Children 3-11:
-                            <span>2200 ฿</span>
-                        </div>
-                        <div class="desc-item">
-                            <p>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/star.svg' ?>"
-                                        alt="image">
-                                </i>
-                                4.86
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="#">
-                                <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>" alt="" />
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#"> <img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>"
-                                    alt="" /> </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#"><img src="<?php echo get_template_directory_uri() . '/assets/img/item.jpg' ?>"
-                                    alt="" /> </a>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-right.svg' ?>"
-                            alt="image">
-                    </div>
-                    <div class="swiper-button-prev">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/arrow-left.svg' ?>"
-                            alt="image">
-                    </div>
-                </div>
-                <a href="#" class="desc">
-                    <span class="location">
-                        <i>
-                            <img src="<?php echo get_template_directory_uri() . '/assets/img/location.svg' ?>"
-                                alt="image">
-                        </i>
-                        Пхукет
-                    </span>
-                    <h6>Као-Лак: бухта Пханг-Нга и остров Джеймса Бонда на лодке</h6>
-                    <div class="bottom">
-                        <div class="desc-item">
-                            Adult:
-                            <span>2600 ฿</span>
-                        </div>
-                        <div class="desc-item">
-                            Children 3-11:
-                            <span>2200 ฿</span>
-                        </div>
-                        <div class="desc-item">
-                            <p>
-                                <i>
-                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/star.svg' ?>"
-                                        alt="image">
-                                </i>
-                                4.86
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        
     </div>
+     -->
+
 </main>
 
 <?php
