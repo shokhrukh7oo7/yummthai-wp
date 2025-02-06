@@ -112,8 +112,10 @@ get_header();
         echo paginate_links([
             'total'     => $query->max_num_pages,
             'current'   => max(1, get_query_var('paged')),
-            'prev_text' => '&laquo;',
-            'next_text' => '&raquo;',
+            // 'prev_text' => '&laquo;',
+            'prev_text' => '<img src="' . get_template_directory_uri() . '/assets/img/arrow-left-short.svg" alt="Prev">',
+            // 'next_text' => '&raquo;',
+            'next_text' => '<img src="' . get_template_directory_uri() . '/assets/img/arrow-right-short.svg" alt="Prev">',
         ]);
         ?>
     </div>
