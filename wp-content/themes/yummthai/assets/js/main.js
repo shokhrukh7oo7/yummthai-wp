@@ -35,36 +35,42 @@ $(document).ready(function () {
 
 
 // Фильтрация для пагинации
-document.addEventListener("DOMContentLoaded", function () {
-    const categoryButtons = document.querySelectorAll(".category span");
-
-    categoryButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const selectedCategory = this.getAttribute("data-filter");
-
-            window.location.href = `?category=${selectedCategory}`;
-        });
-    });
-});
-
 // document.addEventListener("DOMContentLoaded", function () {
 //     const categoryButtons = document.querySelectorAll(".category span");
-//     const posts = document.querySelectorAll(".news .item, .news .item-top");
 
 //     categoryButtons.forEach(button => {
 //         button.addEventListener("click", function () {
-//             categoryButtons.forEach(btn => btn.classList.remove("active"));
-//             this.classList.add("active");
+//             const selectedCategory = this.getAttribute("data-filter");
 
-//             let filter = this.getAttribute("data-filter");
+//             window.location.href = `?category=${selectedCategory}`;
+//         });
+//     });
+// });
 
-//             posts.forEach(post => {
-//                 if (filter === "all" || post.getAttribute("data-category") === filter) {
-//                     post.style.display = "block";
+// document.addEventListener('DOMContentLoaded', function () {
+//     const categorySpans = document.querySelectorAll('.category span');
+
+//     categorySpans.forEach(span => {
+//         span.addEventListener('click', function (event) {
+//             event.preventDefault(); 
+
+//             categorySpans.forEach(item => item.classList.remove('active'));
+
+//             this.classList.add('active');
+
+//             const selectedCategory = this.getAttribute('data-filter');
+//             console.log("Clicked:", selectedCategory); 
+
+//             document.querySelectorAll('.news .item, .news .item-top').forEach(post => {
+//                 if (selectedCategory === 'all' || post.getAttribute('data-category') === selectedCategory) {
+//                     post.style.display = 'block';
 //                 } else {
-//                     post.style.display = "none";
+//                     post.style.display = 'none';
 //                 }
 //             });
 //         });
 //     });
 // });
+
+
+
