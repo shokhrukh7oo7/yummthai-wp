@@ -100,9 +100,6 @@ function yummthai_setup()
 			'flex-height' => true,
 		)
 	);
-	
-	add_theme_support( 'post-thumbnails' );
-	add_image_size( 'yummthai-thumb', 1372, 660, true ); // 300x200 с жестким кадрированием
 }
 add_action('after_setup_theme', 'yummthai_setup');
 
@@ -218,21 +215,22 @@ if (defined('JETPACK__VERSION')) {
 // {
 // 	echo '<span class="posted-on">' . get_the_date('d.m.Y') . '</span>';
 // }
-function yummthai_posted_on() {
-    // Получаем текущий язык через Polylang
-    $current_language = pll_current_language();
+function yummthai_posted_on()
+{
+	// Получаем текущий язык через Polylang
+	$current_language = pll_current_language();
 
-    // Массив с переводами для разных языков
-    $translations = array(
-        'en' => 'Posted on',
-        'ru' => 'Опубликовано'
-    );
+	// Массив с переводами для разных языков
+	$translations = array(
+		'en' => 'Posted on',
+		'ru' => 'Опубликовано'
+	);
 
-    // Получаем перевод для текущего языка, если он есть, или английский по умолчанию
-    $posted_on_text = isset($translations[$current_language]) ? $translations[$current_language] : $translations['en'];
+	// Получаем перевод для текущего языка, если он есть, или английский по умолчанию
+	$posted_on_text = isset($translations[$current_language]) ? $translations[$current_language] : $translations['en'];
 
-    // Выводим дату с соответствующим текстом
-    echo '<span class="posted-on">' . $posted_on_text . ' ' . get_the_date('d.m.Y') . '</span>';
+	// Выводим дату с соответствующим текстом
+	echo '<span class="posted-on">' . $posted_on_text . ' ' . get_the_date('d.m.Y') . '</span>';
 }
 
 // ====================================================================================
@@ -271,4 +269,16 @@ if (function_exists('acf_add_options_page')) {
 	));
 }
 // Footer end
+
+// Footer social link start
+if (function_exists('acf_add_options_page')) {
+	acf_add_options_page(array(
+		'page_title' => 'Настройка соц.сети новостей',
+		'menu_title' => 'Настройка соц.сети новостей',
+		'menu_slug' => 'news-social-setting',
+		'capability' => 'edit_posts',
+		'redirect' => false,
+	));
+}
+// Footer social link end
 // ====================================================================================

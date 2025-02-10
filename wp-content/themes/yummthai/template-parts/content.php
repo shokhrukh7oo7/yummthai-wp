@@ -46,39 +46,28 @@
 		</div>
 
 		<div class="news-social-wrapper">
-			<ul class="social">
-				<li>
-					<a href="#">
-						<img src="<?= get_template_directory_uri() . '/assets/img/x.svg' ?>" alt="">
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="<?= get_template_directory_uri() . '/assets/img/facebook.svg' ?>" alt="">
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="<?= get_template_directory_uri() . '/assets/img/vk.svg' ?>" alt="">
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="<?= get_template_directory_uri() . '/assets/img/line.svg' ?>" alt="">
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="<?= get_template_directory_uri() . '/assets/img/linkedin.svg' ?>" alt="">
-					</a>
-				</li>
-			</ul>
+			<?php if (have_rows('news_social', 'option')): ?>
+				<ul class="social">
+					<?php while (have_rows('news_social', 'option')):
+						the_row();
+						$icon = get_sub_field('news_social_iamge');
+						$url = get_sub_field('news_social_link');
+						?>
+						<li>
+							<a href="<?= esc_url($url, 'option'); ?>" target="_blank">
+								<img src="<?= esc_url($icon, 'option') ?>" alt="image">
+							</a>
+						</li>
+					<?php endwhile; ?>
+				</ul>
+			<?php endif; ?>
 		</div>
 	</div>
 
 
-	<!-- <?php yummthai_post_thumbnail('yummthai-thumb'); ?> -->
-	<?php the_post_thumbnail('yummthai-thumb'); ?>
+	<div class="news-main-image-wrapper">
+		<img src="<?= the_field('news_page_image'); ?>" alt="image">
+	</div>
 
 	<div class="inner">
 		<div class="content">

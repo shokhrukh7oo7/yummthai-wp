@@ -13844,14 +13844,15 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
 }
 
 .single-news .entry-meta .posted-on {
-  font-size: 14px;
-  color: #9CA3AF;
+  font-size: clamp(13px, 1vw, 17px);
+  color: #9ca3af;
 }
 
 .single-news .news-links-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: clamp(10px, 1.5vw, 30px);
 }
 .single-news .news-links-wrapper .news-social-wrapper .social {
   display: flex;
@@ -13861,19 +13862,15 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
 }
 
 .single-news .news-links-wrapper .news-social-wrapper .social img {
-  width: 35px;
-  height: 35px;
+  width: clamp(25px, 2vw, 35px);
+  height: clamp(25px, 2vw, 35px);
 }
 
 .single-news .entry-content {
   margin: 0;
 }
 
-.single-news .wp-post-image {
-  /* width: 100%;
-  height: 660px;
-  object-fit: cover;
-  object-position: center; */
+.single-news .news-main-image-wrapper img {
   border-radius: 10px;
 }
 
@@ -13895,26 +13892,36 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
 }
 .single-news h1,
 .single-news .h1 {
-  font-size: 36px;
+  font-size: clamp(24px, 2.1vw, 36px);
   font-weight: 700;
   margin-bottom: 13px;
 }
 .single-news .yummthai-news-title p {
   color: #222;
-  font-size: 24px;
+  font-size: clamp(17px, 1.5vw, 24px);
   font-weight: 400;
 }
-
+.single-news #breadcrumbs {
+  margin-bottom: 13px;
+}
+.single-news #breadcrumbs a {
+  color: #9ca3af;
+  font-size: clamp(13px, 1vw, 17px);
+}
+.single-news #breadcrumbs span {
+  color: #9ca3af;
+  font-size: clamp(13px, 1vw, 17px);
+}
 .single-news .entry-content h1 {
-  margin: 32px 0;
+  margin: clamp(10px, 2vw, 32px) 0;
   font-size: 24px;
 }
 .single-news .entry-content p {
-  margin: 32px 0;
+  margin: clamp(10px, 2vw, 32px) 0;
   font-size: 18px;
 }
-.single-news .entry-meta {
-  margin: 32px 0;
+.single-news .news-links-wrapper {
+  margin: clamp(10px, 2vw, 32px) 0;
 }
 .single-news .desc {
   font-size: 24px;
@@ -13973,34 +13980,34 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
 .single-news .inner .content h3,
 .single-news .inner .content .h3 {
   font-weight: 600;
-  font-size: 32px;
-  margin-bottom: 32px;
+  font-size: clamp(24px, 2.1vw, 36px);
+  margin: clamp(20px, 2vw, 32px) 0;
 }
 .single-news .inner .content h4,
 .single-news .inner .content .h4,
 .single-news .inner .content h5,
 .single-news .inner .content .h5 {
   font-weight: 600;
-  font-size: 24px;
-  margin-bottom: 32px;
+  font-size: clamp(17px, 1.5vw, 24px);
+  margin: clamp(20px, 2vw, 32px) 0;
 }
 .single-news .inner .content h6,
 .single-news .inner .content .h6 {
   font-weight: 600;
-  font-size: 24px;
-  margin-bottom: 32px;
+  font-size: clamp(17px, 1.5vw, 24px);
+  margin: clamp(20px, 2vw, 32px) 0;
 }
 .single-news .inner .content p {
-  font-size: 18px;
-  margin-bottom: 32px;
+  font-size: clamp(14px, 1.2vw, 18px);
+  margin: clamp(20px, 2vw, 32px) 0;
 }
 .single-news .inner .content img {
   display: block;
   border-radius: 16px;
-  margin-bottom: 32px;
+  margin: clamp(20px, 2vw, 32px) 0;
 }
 .single-news .inner .content figure {
-  margin-bottom: 32px;
+  margin: clamp(20px, 2vw, 32px) 0;
 }
 .single-news .inner .content figure img {
   margin-bottom: 16px;
@@ -14165,6 +14172,10 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
     width: 50%;
     margin-bottom: 24px;
   }
+  .footer .inner .column .soc img {
+    width: clamp(30px, 2.5vw, 40px);
+    height: clamp(30px, 2.5vw, 40px);
+  }
   .single-news .inner .navigation-bar {
     display: none;
   }
@@ -14187,7 +14198,31 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
     margin-right: 16px;
   }
 }
+@media (max-width: 576px) {
+  .single-news h1,
+  .single-news .yummthai-news-title p,
+  .single-news #breadcrumbs,
+  .single-news .entry-content,
+  .footer .inner .column {
+    text-align: center;
+  }
+  .footer .inner .column .btn-transparent {
+    margin: 16px auto;
+  }
+  .footer .inner .column .soc, 
+  .footer .inner .column .payment-images-wrapper {
+    justify-content: center;
+  }
+  .single-news .news-links-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 @media (max-width: 560px) {
+  header .panels .user .btn {
+    padding: 8px;
+  }
   header .panels .user {
     margin-left: 8px;
   }
