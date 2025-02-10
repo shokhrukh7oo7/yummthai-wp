@@ -142,10 +142,9 @@ get_header();
 
     <!-- Тут должен быть слайдер над футером 
     <div class="cards-wrap">
-        
+
     </div>
      -->
-
 </main>
 
 <?php

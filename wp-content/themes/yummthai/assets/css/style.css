@@ -13829,11 +13829,54 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
 }
 
 .single-news {
-  padding: 50px 16px;
+  padding: 20px;
   max-width: 1372px;
   width: 100%;
   margin: auto;
 }
+.single-news .entry-header .entry-meta {
+  margin-bottom: 15px;
+}
+.single-news .entry-header .entry-meta .posted-on {
+  color: #222;
+  font-weight: 400;
+  font-size: clamp(12px, 1vw, 16px);
+}
+
+.single-news .entry-meta .posted-on {
+  font-size: 14px;
+  color: #9CA3AF;
+}
+
+.single-news .news-links-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.single-news .news-links-wrapper .news-social-wrapper .social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.single-news .news-links-wrapper .news-social-wrapper .social img {
+  width: 35px;
+  height: 35px;
+}
+
+.single-news .entry-content {
+  margin: 0;
+}
+
+.single-news .wp-post-image {
+  /* width: 100%;
+  height: 660px;
+  object-fit: cover;
+  object-position: center; */
+  border-radius: 10px;
+}
+
 .single-news .breadcrumb {
   display: flex;
   flex-wrap: wrap;
@@ -13854,7 +13897,24 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
 .single-news .h1 {
   font-size: 36px;
   font-weight: 700;
-  margin-bottom: 24px;
+  margin-bottom: 13px;
+}
+.single-news .yummthai-news-title p {
+  color: #222;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.single-news .entry-content h1 {
+  margin: 32px 0;
+  font-size: 24px;
+}
+.single-news .entry-content p {
+  margin: 32px 0;
+  font-size: 18px;
+}
+.single-news .entry-meta {
+  margin: 32px 0;
 }
 .single-news .desc {
   font-size: 24px;
