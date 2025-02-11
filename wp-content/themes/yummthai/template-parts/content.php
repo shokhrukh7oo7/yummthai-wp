@@ -46,7 +46,9 @@
 		</div>
 
 		<div class="news-social-wrapper">
-			<?php if ( function_exists( 'ADDTOANY_SHARE_SAVE_KIT' ) ) { ADDTOANY_SHARE_SAVE_KIT(); } ?>
+			<?php if (function_exists('ADDTOANY_SHARE_SAVE_KIT')) {
+				ADDTOANY_SHARE_SAVE_KIT();
+			} ?>
 		</div>
 	</div>
 
@@ -83,7 +85,7 @@
 				?>
 			</div><!-- .entry-content -->
 		</div>
-		
+
 		<!--nosharesave-->
 
 		<div class="navigation-bar">

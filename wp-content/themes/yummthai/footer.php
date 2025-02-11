@@ -29,23 +29,23 @@
 					<?php endwhile; ?>
 				</ul>
 			<?php endif; ?>
-			<a href="<?php echo the_field('footer_email_link', 'options')?>" target="_blank" class="mail">
-				<?php echo the_field('footer_email_title', 'options')?>
+			<a href="<?php echo the_field('footer_email_link', 'options') ?>" target="_blank" class="mail">
+				<?php echo the_field('footer_email_title', 'options') ?>
 			</a>
 
 			<div class="payment-images-wrapper">
-				<?php if(have_rows('payment', 'option')): ?>
+				<?php if (have_rows('payment', 'option')): ?>
 					<?php while (have_rows('payment', 'options')):
-					the_row();
+						the_row();
 						$payIcon = get_sub_field('icon');
-					?>
-						<img src="<?php echo esc_url($payIcon, 'option')?>" alt="image">
+						?>
+						<img src="<?php echo esc_url($payIcon, 'option') ?>" alt="image">
 					<?php endwhile; ?>
-				<?php endif; ?> 
+				<?php endif; ?>
 			</div>
-			
+
 			<p>
-				<?php echo the_field('footer_title', 'options')?>
+				<?php echo the_field('footer_title', 'options') ?>
 			</p>
 		</div>
 		<div class="column">
@@ -120,7 +120,7 @@
 			</ul>
 		</div>
 		<div class="column left mobile">
-		<?php if (have_rows('social_links', 'option')): ?>
+			<?php if (have_rows('social_links', 'option')): ?>
 				<ul class="soc">
 					<?php while (have_rows('social_links', 'option')):
 						the_row();
@@ -135,21 +135,21 @@
 					<?php endwhile; ?>
 				</ul>
 			<?php endif; ?>
-			<a href="<?php echo the_field('footer_email_link', 'options')?>" class="mail">
-				<?php echo the_field('footer_email_title', 'options')?>
+			<a href="<?php echo the_field('footer_email_link', 'options') ?>" class="mail">
+				<?php echo the_field('footer_email_title', 'options') ?>
 			</a>
 			<div class="payment-images-wrapper">
-				<?php if(have_rows('payment', 'option')): ?>
+				<?php if (have_rows('payment', 'option')): ?>
 					<?php while (have_rows('payment', 'options')):
-					the_row();
+						the_row();
 						$payIcon = get_sub_field('icon');
-					?>
-						<img src="<?php echo esc_url($payIcon, 'option')?>" alt="image">
+						?>
+						<img src="<?php echo esc_url($payIcon, 'option') ?>" alt="image">
 					<?php endwhile; ?>
-				<?php endif; ?> 
+				<?php endif; ?>
 			</div>
 			<p>
-				<?php echo the_field('footer_title', 'options')?>
+				<?php echo the_field('footer_title', 'options') ?>
 			</p>
 		</div>
 	</div>
@@ -160,35 +160,37 @@
 		<div class="modal-content">
 			<div class="modal-body">
 				<div class="modal-head">
-					<h5><?php echo the_field('modal_language_header', 'options') ?></h5>
+					<h5><?php the_field('modal_language_header', 'options'); ?></h5>
 					<button type="button" class="btn" data-dismiss="modal" aria-label="Close">
-						<img src="<?php echo the_field('modal_language_close_btn', 'options') ?>" alt="">
+						<img src="<?php the_field('modal_language_close_btn', 'options'); ?>" alt="">
 					</button>
 				</div>
 				<div class="modal-inner modal-inner-lang">
 					<ul class="lang-ul">
 						<li>
-							<a href="/ru" class="">
+							<a href="<?= get_permalink(pll_get_post(get_the_ID(), 'ru')); ?>">
 								<i>
-									<img src="<?php echo the_field('modal_language_ru_image', 'options') ?>" alt="" />
+									<img src="<?php the_field('modal_language_ru_image', 'options'); ?>" alt="" />
 								</i>
-								<?php echo the_field('modal_language_ru_text', 'options') ?>
+								<?php the_field('modal_language_ru_text', 'options'); ?>
 							</a>
 						</li>
 						<li>
-							<a href="/" aria-current="page" class="nuxt-link-exact-active nuxt-link-active">
+							<a href="<?= get_permalink(pll_get_post(get_the_ID(), 'en')); ?>">
 								<i>
-									<img src="<?php echo the_field('modal_language_en_image', 'options') ?>" alt="" />
+									<img src="<?php the_field('modal_language_en_image', 'options'); ?>" alt="" />
 								</i>
-								<?php echo the_field('modal_language_en_text', 'options') ?>
+								<?php the_field('modal_language_en_text', 'options'); ?>
 							</a>
 						</li>
+
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 <div class="modal fade modal-login" id="modalLogin" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog">
