@@ -46,21 +46,7 @@
 		</div>
 
 		<div class="news-social-wrapper">
-			<?php if (have_rows('news_social', 'option')): ?>
-				<ul class="social">
-					<?php while (have_rows('news_social', 'option')):
-						the_row();
-						$icon = get_sub_field('news_social_iamge');
-						$url = get_sub_field('news_social_link');
-						?>
-						<li>
-							<a href="<?= esc_url($url, 'option'); ?>" target="_blank">
-								<img src="<?= esc_url($icon, 'option') ?>" alt="image">
-							</a>
-						</li>
-					<?php endwhile; ?>
-				</ul>
-			<?php endif; ?>
+			<?php if ( function_exists( 'ADDTOANY_SHARE_SAVE_KIT' ) ) { ADDTOANY_SHARE_SAVE_KIT(); } ?>
 		</div>
 	</div>
 
@@ -97,6 +83,8 @@
 				?>
 			</div><!-- .entry-content -->
 		</div>
+		
+		<!--nosharesave-->
 
 		<div class="navigation-bar">
 			<h5>Содержание</h5>

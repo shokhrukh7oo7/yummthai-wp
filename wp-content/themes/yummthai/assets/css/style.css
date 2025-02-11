@@ -13908,6 +13908,9 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
   color: #9ca3af;
   font-size: clamp(13px, 1vw, 17px);
 }
+.single-news #breadcrumbs a:hover {
+  color: #222;
+}
 .single-news #breadcrumbs span {
   color: #9ca3af;
   font-size: clamp(13px, 1vw, 17px);
@@ -13921,7 +13924,10 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
   font-size: 18px;
 }
 .single-news .news-links-wrapper {
-  margin: clamp(10px, 2vw, 32px) 0;
+  margin: clamp(10px, 2vw, 32px) 10px;
+}
+.single-news .entry-content .addtoany_share_save_container {
+  display: none;
 }
 .single-news .desc {
   font-size: 24px;

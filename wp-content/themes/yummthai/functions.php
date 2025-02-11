@@ -269,16 +269,4 @@ if (function_exists('acf_add_options_page')) {
 	));
 }
 // Footer end
-
-// Footer social link start
-if (function_exists('acf_add_options_page')) {
-	acf_add_options_page(array(
-		'page_title' => 'Настройка соц.сети новостей',
-		'menu_title' => 'Настройка соц.сети новостей',
-		'menu_slug' => 'news-social-setting',
-		'capability' => 'edit_posts',
-		'redirect' => false,
-	));
-}
-// Footer social link end
 // ====================================================================================
