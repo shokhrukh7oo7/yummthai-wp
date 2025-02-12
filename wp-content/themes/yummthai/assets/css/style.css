@@ -13396,6 +13396,7 @@ header .panels .user .hidden-panel .inner ul li:last-child a {
   bottom: 0;
   object-fit: cover;
   height: 100%;
+  width: 100%;
 }
 .head img.left {
   left: 0;

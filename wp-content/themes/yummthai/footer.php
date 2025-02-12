@@ -183,14 +183,12 @@
 								<?php the_field('modal_language_en_text', 'options'); ?>
 							</a>
 						</li>
-
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 
 <div class="modal fade modal-login" id="modalLogin" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog">
