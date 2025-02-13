@@ -270,3 +270,43 @@ if (function_exists('acf_add_options_page')) {
 }
 // Footer end
 // ====================================================================================
+
+function transliterate($text) {
+    $translit_table = [
+        'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd',
+        'е' => 'e', 'ё' => 'e', 'ж' => 'zh', 'з' => 'z', 'и' => 'i',
+        'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n',
+        'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't',
+        'у' => 'u', 'ф' => 'f', 'х' => 'kh', 'ц' => 'ts', 'ч' => 'ch',
+        'ш' => 'sh', 'щ' => 'shch', 'ъ' => '', 'ы' => 'y', 'ь' => '',
+        'э' => 'e', 'ю' => 'yu', 'я' => 'ya'
+    ];
+
+    $text = mb_strtolower($text, 'UTF-8');
+    $text = strtr($text, $translit_table);
+    $text = preg_replace('/[^a-z0-9-]+/', '-', $text);
+    $text = trim($text, '-');
+    return $text;
+}
+
+function add_custom_classes_to_content($content) {
+    $GLOBALS['toc_headings'] = []; // Очищаем перед обработкой
+
+    $content = preg_replace_callback('/<h([1-6])>(.*?)<\/h\1>/i', function ($matches) {
+        $level = $matches[1];
+        $text = trim(strip_tags($matches[2])); // Убираем HTML-теги
+        $id = transliterate($text); // Транслитерация заголовка
+
+        // Сохраняем заголовок в глобальный массив
+        $GLOBALS['toc_headings'][] = ['id' => $id, 'title' => $text];
+
+        return "<h$level id='$id' class='custom-heading-$level'>$text</h$level>";
+    }, $content);
+
+    return $content;
+}
+add_filter('the_content', 'add_custom_classes_to_content');
+
+
+
+// ====================================================================================

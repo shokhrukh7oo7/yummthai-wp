@@ -86,9 +86,26 @@
 			</div><!-- .entry-content -->
 		</div>
 
-		<!--nosharesave-->
-
 		<div class="navigation-bar">
+			<h5>Содержание</h5>
+			<ul>
+				<?php
+				if (!empty($GLOBALS['toc_headings'])) {
+					foreach ($GLOBALS['toc_headings'] as $index => $heading) {
+						echo '<li id="nav-item-' . ($index + 1) . '">';
+						echo '<span>' . ($index + 1) . '. </span>';
+						echo '<a href="#' . esc_attr($heading['id']) . '">' . esc_html($heading['title']) . '</a>';
+						echo '</li>';
+					}
+				} else {
+					echo '<li>Заголовки не найдены</li>';
+				}
+				?>
+			</ul>
+		</div>
+
+
+		<!-- <div class="navigation-bar">
 			<h5>Содержание</h5>
 			<ul>
 				<li>
@@ -104,7 +121,7 @@
 					<a href="#first"> Бангкок: Динамичное Сердце Таиланда</a>
 				</li>
 			</ul>
-		</div>
+		</div> -->
 	</div>
 
 </div><!-- #post-<?php the_ID(); ?> -->
