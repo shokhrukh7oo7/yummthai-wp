@@ -306,7 +306,4 @@ function add_custom_classes_to_content($content) {
     return $content;
 }
 add_filter('the_content', 'add_custom_classes_to_content');
-
-
-
 // ====================================================================================
