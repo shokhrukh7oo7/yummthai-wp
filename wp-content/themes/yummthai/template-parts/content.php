@@ -103,25 +103,6 @@
 				?>
 			</ul>
 		</div>
-
-
-		<!-- <div class="navigation-bar">
-			<h5>Содержание</h5>
-			<ul>
-				<li>
-					<span>1. </span>
-					<a href="#first"> Бангкок: Динамичное Сердце Таиланда</a>
-				</li>
-				<li>
-					<span>2. </span>
-					<a href="#second"> Бангкок: Динамичное Сердце Таиланда</a>
-				</li>
-				<li>
-					<span>3. </span>
-					<a href="#first"> Бангкок: Динамичное Сердце Таиланда</a>
-				</li>
-			</ul>
-		</div> -->
 	</div>
 
 </div><!-- #post-<?php the_ID(); ?> -->
